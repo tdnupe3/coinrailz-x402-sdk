@@ -1,5 +1,5 @@
 # Coin Railz x402 SDK
-### Autonomous, pay-per-call blockchain microservices for AI agents
+Autonomous, pay-per-call blockchain microservices for AI agents.
 
 [![Network: Base](https://img.shields.io/badge/network-Base-0052FF.svg)](https://base.org)
 ![Protocol: x402](https://img.shields.io/badge/protocol-x402-orange.svg)
@@ -9,23 +9,23 @@
 ---
 
 ## 🧩 Overview
-**Coin Railz x402 SDK** provides **18 production-ready blockchain microservices** designed specifically for **autonomous AI agents**, with payments authenticated through the `X-PAYMENT` header.
+**Coin Railz x402 SDK** provides **18 production-ready blockchain microservices** designed for **autonomous AI agents**, with micropayments authenticated using the `X-PAYMENT` header.
 
 No API keys.  
 No accounts.  
 No OAuth.  
-Just **Base USDC + a txHash**.
+Just **Base USDC + a transaction hash**.
 
 ---
 
 ## 🔥 Why Use Coin Railz?
 
 ### ✔ True “Stripe for AI Agents”
-Pay-per-call microservices using Base USDC via x402.
+Each call is paid automatically using x402.
 
 ### ✔ 18 On-Chain Intelligence Services
 - Wallet risk scoring  
-- Token prices  
+- Token price lookups  
 - Liquidity monitoring  
 - Whale alerts  
 - Contract scanning  
@@ -35,15 +35,15 @@ Pay-per-call microservices using Base USDC via x402.
 - Agent identity  
 - And more…
 
-### ✔ No developer onboarding
-Blockchain transactions serve as authentication.
+### ✔ Authentication via blockchain payment
+No onboarding required.
 
-### ✔ Works with all AI frameworks
+### ✔ Works with all AI agent frameworks
 - ElizaOS  
 - LangChain  
 - AgentKit  
-- Custom agents  
-- Node & Python bots  
+- Custom loops  
+- Node/Python bots  
 
 ---
 
@@ -53,16 +53,13 @@ Blockchain transactions serve as authentication.
 2. Send a payment to the Coin Railz platform wallet:  
 0xa4bbe37f9a6ae2dc36a607b91eb148c0ae163c91
 
-pgsql
+css
 Copy code
-3. Copy the `txHash`  
-4. Encode it as Base64 JSON:
+3. Copy the resulting `txHash`  
+4. Encode it:
 ```json
 {"txHash": "0x123abc..."}
-```
-
-Add this header:
-
+Add as header:
 
 makefile
 Copy code
@@ -71,7 +68,7 @@ Call any endpoint
 
 Receive JSON response
 
-🗂 Service Catalog (18 Endpoints)
+🗂 Service Catalog
 Base URL:
 
 arduino
@@ -97,8 +94,8 @@ Instant Agent Wallet	/instant-agent-wallet	$1.00
 Verified Agent Identity	/verified-agent-identity	$5.00
 Seamless Bridge	/seamless-chain-bridge	$2.00
 
-🧪 Quick Start
-Encode the X-PAYMENT header
+🧪 Quick Start Example
+Step 1 — Encode X-PAYMENT
 js
 Copy code
 const payload = { txHash: "0x123abc..." };
@@ -149,11 +146,11 @@ res = requests.post(
 
 print(res.json())
 🧠 Integration Guides
-ElizaOS Integration: /docs/eliza-integration.md
+/docs/eliza-integration.md
 
-Node/Python Agent Integration: /docs/agent-integration.md
+/docs/agent-integration.md
 
-Build a Paid Agent in 5 Minutes: /docs/build-paid-agent.md
+/docs/build-paid-agent.md
 
 Examples in:
 
@@ -163,39 +160,20 @@ Copy code
 /examples/python
 ⚠️ Error Codes
 Code	Meaning
-400	Invalid request body
-402	Payment invalid / required
+400	Invalid request
+402	Payment required / invalid
 409	Payment conflict
-500	Internal error
+500	Server error
 
-Example:
-
-json
-Copy code
-{
-  "success": false,
-  "error": "Invalid or insufficient payment.",
-  "code": "PAYMENT_INVALID"
-}
-🌐 Network & Wallet Info
-Base Mainnet
-USDC
+🌐 Network Info
+Network: Base Mainnet
+Currency: USDC
 Platform Wallet:
 
 Copy code
 0xa4bbe37f9a6ae2dc36a607b91eb148c0ae163c91
 🤝 Contributing
-PRs welcome!
-
-Open issues for:
-
-New services
-
-SDK improvements
-
-Agent integrations
-
-ElizaOS examples
+PRs welcome.
 
 📞 Support
 Email: support@coinrailz.com
