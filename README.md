@@ -59,6 +59,7 @@ Copy code
 4. Encode it:
 ```json
 {"txHash": "0x123abc..."}
+```
 Add as header:
 
 makefile
