@@ -1,4 +1,5 @@
-Coin Railz – x402 Microservices for Autonomous AI Agents
+# Coin Railz – x402 Microservices for Autonomous AI Agents
+
 
 Build paid, on-chain, autonomous AI agents on Base using simple HTTP requests and x402 micropayments.
 
