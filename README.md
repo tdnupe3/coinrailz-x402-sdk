@@ -1,5 +1,4 @@
-# Coin Railz – x402 Microservices for Autonomous AI Agents
-
+# Coin Railz — x402 Microservices for Autonomous AI Agents
 
 Build paid, on-chain, autonomous AI agents on Base using simple HTTP requests and x402 micropayments.
 
@@ -14,104 +13,106 @@ Build paid, on-chain, autonomous AI agents on Base using simple HTTP requests an
 
 🚀 What Is Coin Railz?
 
-Coin Railz is a production-ready catalog of 18 on-chain microservices for AI agents, powered by the x402 autonomous micropayment protocol.
+Coin Railz provides a production-ready catalog of 18 on-chain microservices for AI agents, powered by the x402 autonomous payment protocol.
 
-These endpoints give your agents real operational abilities:
+These services give your agent real-world powers:
 
-Multi-chain wallet reading
+Wallet scanning
 
 Wallet risk scoring
 
-Token pricing & metadata
+Multi-chain balances
 
-DEX liquidity analysis
+Token prices
 
-Contract scanning
+DEX liquidity
 
-Whale alerts
+Whale tracking
+
+Sentiment analysis
 
 Portfolio tracking
 
 Transaction building
 
-Approval management
+Smart contract scanning
 
-Sentiment analysis
+Approval management
 
 Agent identity verification
 
 Autonomous wallet creation
 
-And more…
-
-No API keys
-No dashboards
-No authentication
-Pay-per-call with USDC on Base
-Fully permissionless
-
-Your agent simply pays with a txHash via the X-PAYMENT header, and the service executes.
+No API keys.
+No login.
+No dashboard.
+Just USDC on Base + the X-PAYMENT header.
 
 ⚡ Why Developers Use Coin Railz
 
-Autonomous AI-native payments (x402)
+Autonomous-friendly payment model (x402)
 
-Permissionless (no signup required)
+Base mainnet = fast, cheap, low-latency
 
-Base mainnet (low fees, fast finality)
+Fully permissionless — no signup required
 
-Agent-first design (made for LLM agents)
+Simple HTTP POST endpoints
 
-Works with ElizaOS, AgentKit, LangChain, AutoGen, and custom agents
+Pay-per-call — no subscriptions
 
-Production-grade 18-service API catalog
+Works with:
+
+ElizaOS
+
+AgentKit
+
+LangChain
+
+AutoGen
+
+Custom LLM agent loops
 
 🧩 Architecture Overview
-[AI Agent] 
-     |
-     |  X-PAYMENT Header (base64 txHash)
-     v
+[AI Agent]
+    |
+    |  (X-PAYMENT Header: base64-encoded txHash)
+    v
 [Coin Railz x402 Gateway]
-     |
-     v
-[18 Microservices]
-     |
-     v
+    |
+    v
+[18 Autonomous Microservices]
+    |
+    v
 [JSON Response]
 
-
-Simple. Modular. Autonomous.
-
 🏁 Quick Start (5 Minutes)
-1. Fund a Wallet With USDC on Base
+1. Fund a wallet with USDC on Base
 
-Use MetaMask or Coinbase Wallet.
+Use MetaMask, Coinbase Wallet, or any Base-supported wallet.
 
-2. Send a Payment to Coin Railz
-
-Send USDC to:
-
-Coin Railz Platform Wallet
+2. Send a USDC payment to the Coin Railz platform wallet
+Platform Wallet Address (Base):
 0xa4bbe37f9a6ae2dc36a607b91eb148c0ae163c91
-Network: Base Mainnet
 Asset: USDC
+Network: Base Mainnet
 
 
 Copy the resulting txHash.
-This will authenticate and pay for your service call.
 
-3. Create Your X-PAYMENT Header
+3. Create your X-PAYMENT header
 JSON payload:
 {"txHash": "0x123abc..."}
 
-Base64 encoding:
+Convert to Base64:
 Buffer.from(JSON.stringify({ txHash: "0x123abc..." })).toString("base64")
 
-Result example:
+
+Example output:
+
 eyJ0eEhhc2giOiAiMHgxMjNhYmMuLi4ifQ==
 
-4. Call Any Service
-Node.js Example
+4. Call any Coin Railz service
+Node.js example:
 import fetch from "node-fetch";
 import { Buffer } from "buffer";
 
@@ -132,7 +133,7 @@ const res = await fetch("https://coinrailz.com/x402/wallet-risk", {
 
 console.log(await res.json());
 
-Python Example
+Python example:
 import json
 import base64
 import requests
@@ -154,71 +155,193 @@ res = requests.post(
 
 print(res.json())
 
-🧠 The X-PAYMENT Header (Critical)
+🧠 The X-PAYMENT Header
 
-Coin Railz uses HTTP 402 "Payment Required" to enable autonomous payments.
+Coin Railz uses HTTP 402 Payment Required for autonomous payments.
 
-Your agent must send:
-
+Format:
 X-PAYMENT: <base64 encoded JSON>
 
 
-Decoded JSON:
+Decoded payload must look like:
 
-{
-  "txHash": "0xabc123..."
-}
+{"txHash": "0xabc123..."}
 
 
-Coin Railz validates:
+Coin Railz verifies:
 
-Payment was sent to platform wallet
+transaction exists
 
-Amount ≥ service price
+payment sent to platform wallet
 
-Transaction exists
+amount >= required price
 
-Transaction has not been reused
+txHash not reused
 
-If valid → service runs
-If invalid → HTTP 402 returned
+chain = Base mainnet
+
+If valid → service executes
+If invalid → HTTP 402 error
 
 📚 Full Service Catalog
 
-Base URL:
+Below is a clean, bullet-style catalog (renders perfectly on GitHub every time).
+
+Each service lives at:
 
 https://coinrailz.com/x402/<service>
 
-Name	Endpoint	Price (USDC)	Required Fields
-Multi-Chain Balance	POST /multi-chain-balance	0.01	walletAddress
-Gas Price Oracle	POST /gas-price-oracle	0.01	chain
-Token Price	POST /token-price	0.05	tokenAddress, chain
-Contract Scan	POST /contract-scan	2.00	contractAddress, chain
-Wallet Risk	POST /wallet-risk	0.50	walletAddress, chain
-Trade Signals	POST /trade-signals	2.00	optional
-Token Sentiment	POST /token-sentiment	0.10	tokenSymbol
-Trending Tokens	POST /trending-tokens	0.25	optional
-Whale Alerts	POST /whale-alerts	0.50	optional
-DEX Liquidity	POST /dex-liquidity	0.15	tokenAddress, chain
-Transaction Builder	POST /transaction-builder	0.30	to, chain, amount
-Token Metadata	POST /token-metadata	0.10	tokenAddress, chain
-Approval Manager	POST /approval-manager	0.20	tokenAddress, spender, amount, chain
-Batch Quote	POST /batch-quote	0.40	fromToken, toToken, amount, chain
-Portfolio Tracker	POST /portfolio-tracker	0.50	walletAddress
-Instant Agent Wallet	POST /instant-agent-wallet	1.00	agentId
-Verified Agent Identity	POST /verified-agent-identity	5.00	agentId, walletAddress
-Seamless Chain Bridge	POST /seamless-chain-bridge	2.00	fromChain, toChain, amount, fromAddress, toAddress
+Multi-Chain Balance
+
+Endpoint: POST /multi-chain-balance
+
+Price: 0.01 USDC
+
+Params: walletAddress
+
+Gas Price Oracle
+
+Endpoint: POST /gas-price-oracle
+
+Price: 0.01 USDC
+
+Params: chain
+
+Token Price
+
+Endpoint: POST /token-price
+
+Price: 0.05 USDC
+
+Params: tokenAddress, chain
+
+Contract Scan
+
+Endpoint: POST /contract-scan
+
+Price: 2.00 USDC
+
+Params: contractAddress, chain
+
+Wallet Risk
+
+Endpoint: POST /wallet-risk
+
+Price: 0.50 USDC
+
+Params: walletAddress, chain
+
+Trade Signals
+
+Endpoint: POST /trade-signals
+
+Price: 2.00 USDC
+
+Params: (optional)
+
+Token Sentiment
+
+Endpoint: POST /token-sentiment
+
+Price: 0.10 USDC
+
+Params: tokenSymbol
+
+Trending Tokens
+
+Endpoint: POST /trending-tokens
+
+Price: 0.25 USDC
+
+Params: (optional)
+
+Whale Alerts
+
+Endpoint: POST /whale-alerts
+
+Price: 0.50 USDC
+
+Params: (optional)
+
+DEX Liquidity
+
+Endpoint: POST /dex-liquidity
+
+Price: 0.15 USDC
+
+Params: tokenAddress, chain
+
+Transaction Builder
+
+Endpoint: POST /transaction-builder
+
+Price: 0.30 USDC
+
+Params: to, chain, amount
+
+Token Metadata
+
+Endpoint: POST /token-metadata
+
+Price: 0.10 USDC
+
+Params: tokenAddress, chain
+
+Approval Manager
+
+Endpoint: POST /approval-manager
+
+Price: 0.20 USDC
+
+Params: tokenAddress, spender, amount, chain
+
+Batch Quote
+
+Endpoint: POST /batch-quote
+
+Price: 0.40 USDC
+
+Params: fromToken, toToken, amount, chain
+
+Portfolio Tracker
+
+Endpoint: POST /portfolio-tracker
+
+Price: 0.50 USDC
+
+Params: walletAddress
+
+Instant Agent Wallet
+
+Endpoint: POST /instant-agent-wallet
+
+Price: 1.00 USDC
+
+Params: agentId
+
+Verified Agent Identity
+
+Endpoint: POST /verified-agent-identity
+
+Price: 5.00 USDC
+
+Params: agentId, walletAddress
+
+Seamless Chain Bridge
+
+Endpoint: POST /seamless-chain-bridge
+
+Price: 2.00 USDC
+
+Params: fromChain, toChain, amount, fromAddress, toAddress
+
 🛠 Build a Paid AI Agent (5 Minutes)
-1. Send a USDC payment
-
-Get the resulting txHash.
-
-2. Create header helper
+Helper
 function xPayment(txHash) {
   return Buffer.from(JSON.stringify({ txHash })).toString("base64");
 }
 
-3. Add service wrapper
+Service call wrapper
 async function walletRisk(wallet, chain, txHash) {
   const header = xPayment(txHash);
 
@@ -234,17 +357,14 @@ async function walletRisk(wallet, chain, txHash) {
   return res.json();
 }
 
-4. Use inside agent logic
-const result = await walletRisk(
+Use inside agent logic
+const risk = await walletRisk(
   "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
   "base",
   "0x123abc..."
 );
 
-console.log(result);
-
-
-Your agent is now paid, autonomous, and operational.
+console.log(risk);
 
 🧬 ElizaOS Integration
 Tool definition
@@ -264,7 +384,7 @@ export const walletRiskTool = {
     required: ["walletAddress", "txHash"]
   },
   async execute(input) {
-    const xPayment = Buffer
+    const header = Buffer
       .from(JSON.stringify({ txHash: input.txHash }))
       .toString("base64");
 
@@ -272,11 +392,11 @@ export const walletRiskTool = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-PAYMENT": xPayment
+        "X-PAYMENT": header
       },
       body: JSON.stringify({
         walletAddress: input.walletAddress,
-        chain: input.chain || "base"
+        chain: input.chain ?? "base"
       })
     });
 
@@ -287,15 +407,12 @@ export const walletRiskTool = {
 Add to agent config
 tools: [walletRiskTool]
 
-
-Done.
-
 ❗ Error Codes
 Code	Meaning
-400	Bad Request
-402	Payment Required
-404	Invalid Service
-500	Internal Error
+400	Missing or invalid parameters
+402	Payment invalid or insufficient
+404	Service not found
+500	Internal server error
 📁 Repository Structure
 /examples
     node-wallet-risk.js
@@ -313,7 +430,6 @@ LICENSE
 🤝 Contributing
 
 PRs welcome.
-Issues welcome.
 Agent builders encouraged to request new services.
 
 📜 License
@@ -322,7 +438,7 @@ MIT License © 2025 Coin Railz
 
 📬 Contact
 
-X (Twitter): https://x.com/coinrailz
+Twitter (X): https://x.com/coinrailz
 
 Email: support@coinrailz.com
 
